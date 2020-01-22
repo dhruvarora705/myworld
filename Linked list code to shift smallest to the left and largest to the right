@@ -1,0 +1,65 @@
+public static void shift()
+{
+  Node curr=head;
+  Node small=null;
+  Node large=null;
+  Node prev=null;
+  Node tail=null;
+  int smallest=curr.data;
+  if (head==null)
+   System.out.print("0");
+   else
+   {
+  while (curr!=null)
+  {
+    if (smallest>curr.data)
+    {
+      small=curr;
+      smallest=curr.data;
+      //System.out.println(small.data);
+    }
+    tail=curr;
+    curr=curr.next;
+  }
+  
+  Node curr1=head;
+  int largest=curr1.data;
+  while (curr1!=null)
+  {
+    if (largest<curr1.data)
+    {
+      large=curr1;
+      largest=curr1.data;
+      
+    }
+    curr1=curr1.next;
+  }
+  if (head.data!=smallest)
+  {
+  curr=head;
+  while (curr.data!=smallest)
+  {
+    prev=curr;
+    curr=curr.next;
+  }
+  prev.next=small.next;
+  small.next=head;
+  head=small;
+  }
+//System.out.println(tail.data+"\n"+largest);
+if (tail.data!=largest)
+{
+  curr1=head;
+  while (curr1.data!=largest)
+  {
+    prev=curr1;
+    curr1=curr1.next;
+  }
+  prev.next=curr1.next;
+  tail.next=curr1;
+  tail=curr1;
+  curr1.next=null;
+}
+   }
+  
+}

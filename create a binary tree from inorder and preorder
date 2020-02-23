@@ -1,0 +1,32 @@
+public static Node preinOrder(int in[],int pre[])
+    {
+        return preinOrderHelper(in,pre,0,in.length-1,0,pre.length-1);
+        
+    }   
+    public static Node preinOrderHelper(int in[],int pre[],int inS,int inE,int preS,int preE)
+    {
+       if (inS>inE)
+         return null;
+       int rootData=pre[preS];
+       Node root=new Node(rootData);
+       int rootIndex=-1;
+       for (int i=inS;i<=inE;i++)
+       {
+           if (in[i]==rootData)
+              {
+                  rootIndex=i;
+                  break;
+              }
+       }
+       int leftInS=inS;
+       int leftInE=rootIndex-1;
+       int leftPreS=preS+1;
+       int leftPreE=leftInE-leftInS+leftPreS;
+       int rightInS=rootIndex+1;
+       int rightInE=inE;
+       int rightPreS=leftPreE+1;
+       int rightPreE=preE;
+       root.left=preinOrderHelper(in, pre,leftInS,leftInE,leftPreS,leftPreE);
+       root.right=preinOrderHelper(in, pre,rightInS,rightInE,rightPreS,rightPreE);
+       return root;
+    }
